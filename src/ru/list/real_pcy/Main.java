@@ -1,8 +1,0 @@
-package ru.list.real_pcy;
-
-public class Main {
-
-    public static void main(String[] args) {
-	// write your code here
-    }
-}
