@@ -1,4 +1,4 @@
-package OOPLessons;
+package ru.metadevs.ivan;
 
 public class Manager implements Employee {
 
@@ -33,9 +33,8 @@ public class Manager implements Employee {
     private int ageOfPerson;
     private String workingCompany;
 
-    public Manager(String nameOfPerson, int salary, int ageOfPerson) {
+    public Manager(String nameOfPerson, int ageOfPerson) {
         this.nameOfPerson = nameOfPerson;
-        this.salary = salary;
         this.ageOfPerson = ageOfPerson;
     }
 
@@ -45,5 +44,10 @@ public class Manager implements Employee {
         System.out.print(this.nameOfPerson);
         System.out.print(" " + this.ageOfPerson + " ");
         System.out.printf("%d", this.salary);
+    }
+
+    @Override
+    public String getName() {
+        return null;
     }
 }

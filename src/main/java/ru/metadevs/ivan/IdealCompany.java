@@ -1,4 +1,4 @@
-package OOPLessons;
+package ru.metadevs.ivan;
 
 public interface IdealCompany {
 
@@ -7,4 +7,6 @@ public interface IdealCompany {
     void hire(Employee specialist);
 
     void printEmployees();
+
+    Employee employeeByName(String name);
 }

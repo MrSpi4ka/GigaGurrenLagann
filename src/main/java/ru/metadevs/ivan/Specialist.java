@@ -1,4 +1,4 @@
-package OOPLessons;
+package ru.metadevs.ivan;
 
 public class Specialist implements Employee {
 
@@ -7,16 +7,13 @@ public class Specialist implements Employee {
     private int ageOfPerson;
     private String workingCompany;
 
-    public Specialist(String nameOfPerson, int ageOfPerson, int salary) {
+    public Specialist(String nameOfPerson, int ageOfPerson) {
         this.nameOfPerson = nameOfPerson;
         this.ageOfPerson = ageOfPerson;
-        this.salary = salary;
+
     }
 
     //region getters/setters
-    public String getNameOfPerson() {
-        return nameOfPerson;
-    }
 
     public void setNameOfPerson(String nameOfPerson) {
         this.nameOfPerson = nameOfPerson;
@@ -34,11 +31,7 @@ public class Specialist implements Employee {
         return ageOfPerson;
     }
 
-    public void setAgeOfPerson(int ageOfPerson) {
-        this.ageOfPerson = ageOfPerson;
-    }
-
-    public String getWorkingCompany(String ooo_yoba) {
+    public String getWorkingCompany() {
         return workingCompany;
     }
 
@@ -47,14 +40,10 @@ public class Specialist implements Employee {
     }
     //endregion
 
-    static boolean salaryComparAge(int salary, int ageOfPerson) {
-        return salary > ageOfPerson;
-    }
-
-    public static void salaryValidate() throws Exception {
-        boolean validate = salaryComparAge(31, 30000);
-        if (validate == false) {
-            throw new Exception("Incorrect data");
+    @Override
+    public void salaryValidate(int salary) {
+        if (salary < ageOfPerson) {
+            throw new SalaryValidateException("Salary could not be lower than ageOfPerson");
         }
     }
 
@@ -75,4 +64,8 @@ public class Specialist implements Employee {
                 '}';
     }
 
+    @Override
+    public String getName() {
+        return nameOfPerson;
+    }
 }
