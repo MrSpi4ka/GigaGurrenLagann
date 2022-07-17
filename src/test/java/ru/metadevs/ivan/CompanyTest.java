@@ -1,32 +1,65 @@
 package ru.metadevs.ivan;
 
-
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.*;
 
 class CompanyTest {
 
-
-
     @Test
     public void shouldHireWorkerToCompany() {
-        Company metadevs = new Company("Metadevs", 2 );
+        Company metaDevs = new Company("Metadevs", 2);
         Employee ivan = new Manager("Ivan", 21);
-        Employee lalka = new Specialist("Lalka", 18);
+        Employee pavel = new Specialist("Pavel", 18);
+        metaDevs.hire(ivan, 1500);
+        metaDevs.hire(pavel, 1200);
 
-
-        assertThat(metadevs.getEmployees().length).isEqualTo(3);
+        assertThat(metaDevs.getEmployees().length).isEqualTo(2);
+        assertThat(metaDevs.employeeByName(ivan.getName())).isEqualTo(ivan);
     }
 
     @Test
-    public void exampleException(){
-        assertThatExceptionOfType(SalaryValidateException.class).isThrownBy(()->{
-            metadevs.hire(сотрудник, зарплата)
-        });
+    public void shouldFireNonExistEmployeeFromCompany() {
+        Company metaDevs = new Company("Metadevs", 1);
+        Employee ivan = new Manager("Ivan", 21);
+        Employee pavel = new Specialist("Pavel", 18);
+        metaDevs.hire(ivan, 1500);
+
+        assertThatExceptionOfType(EmployeeNotFoundException.class).isThrownBy(() -> metaDevs.fire(pavel));
+    }
+
+    @Test
+    public void shouldFireEmployeeFromCompany (){
+        Company metaDevs = new Company("Metadevs", 1);
+        Employee ivan = new Specialist("Ivan", 21);
+        metaDevs.hire(ivan,1500);
+
+        assertThat(metaDevs.getEmployees().length).isEqualTo(1);
+
+        metaDevs.fire(ivan);
+
+        assertThat(metaDevs.getEmployees().length).isEqualTo(0);
+    }
+
+//    @Test
+//    public void shouldFoundEmployeeNonExistInFromCompany(){
+//        Company metaDevs = new Company("Metadevs", 1);
+//        Employee ivan = new Manager("Ivan", 21);
+//
+//
+////        assertThatExceptionOfType(EmployeeNotFoundException.class).isThrownBy(() ->{
+////            metaDevs.employeeByName("Ivan");
+////        });
+//
+//    }
+
+    @Test
+    public void shouldHireExistEmployeeFromCompany(){
+        Company metaDevs = new Company("Metadevs", 1);
+        Employee ivan = new Manager("Ivan", 21);
+        metaDevs.hire(ivan, 1500);
+
+        assertThatExceptionOfType(EmployeeValidateExceptions.class).isThrownBy(() ->  metaDevs.hire(ivan, 1500));
     }
 }
 
-//Постараться сделать все тесты до следуюещй неделе (не обязательно).
-//Привести к рабочему состоянию Gradle у всех. Приведём все к одному состоянию все методы, что они корректно принимают все.

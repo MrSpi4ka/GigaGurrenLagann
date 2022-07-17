@@ -2,45 +2,40 @@ package ru.metadevs.ivan;
 
 public class Manager implements Employee {
 
+    private String nameOfPerson;
+    private int ageOfPerson;
+    private int salary;
+    private String companyName;
+
     //region getters/setters
     public String getNameOfPerson() {
         return nameOfPerson;
     }
-
-    public void setNameOfPerson(String nameOfPerson) {
-        this.nameOfPerson = nameOfPerson;
-    }
-
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
-
     public int getAgeOfPerson() {
         return ageOfPerson;
     }
-
-    public void setAgeOfPerson(int ageOfPerson) {
-        this.ageOfPerson = ageOfPerson;
-    }
     //endregion
-
-    private String nameOfPerson;
-    private int salary;
-    private int ageOfPerson;
-    private String workingCompany;
 
     public Manager(String nameOfPerson, int ageOfPerson) {
         this.nameOfPerson = nameOfPerson;
         this.ageOfPerson = ageOfPerson;
+
+    }
+    @Override
+    public void salaryValidate(int salary) {
+        if (salary < ageOfPerson) {
+            throw new SalaryValidateException("Salary could not be lower than ageOfPerson");
+        }
+    }
+
+    @Override
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     @Override
     public void printPersonalInfo() {
-        System.out.println("I'm Manager");
+        System.out.println("I'm Specialist");
         System.out.print(this.nameOfPerson);
         System.out.print(" " + this.ageOfPerson + " ");
         System.out.printf("%d", this.salary);
@@ -48,6 +43,16 @@ public class Manager implements Employee {
 
     @Override
     public String getName() {
+        return nameOfPerson;
+    }
+
+    @Override
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    @Override
+    public String getCompanyName() {
         return null;
     }
 }

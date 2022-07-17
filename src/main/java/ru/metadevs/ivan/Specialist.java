@@ -5,38 +5,19 @@ public class Specialist implements Employee {
     private String nameOfPerson;
     private int salary;
     private int ageOfPerson;
-    private String workingCompany;
+    private String companyName;
 
     public Specialist(String nameOfPerson, int ageOfPerson) {
         this.nameOfPerson = nameOfPerson;
         this.ageOfPerson = ageOfPerson;
-
     }
 
     //region getters/setters
-
     public void setNameOfPerson(String nameOfPerson) {
         this.nameOfPerson = nameOfPerson;
     }
-
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
-
     public int getAgeOfPerson() {
         return ageOfPerson;
-    }
-
-    public String getWorkingCompany() {
-        return workingCompany;
-    }
-
-    public void setWorkingCompany(String workingCompany) {
-        this.workingCompany = workingCompany;
     }
     //endregion
 
@@ -53,19 +34,36 @@ public class Specialist implements Employee {
         System.out.print(this.nameOfPerson);
         System.out.print(" " + this.ageOfPerson + " ");
         System.out.printf("%d", this.salary);
+        System.out.println(" " + this.companyName);
     }
 
     @Override
     public String toString() {
         return "Specialist{" +
                 "nameOfPerson='" + nameOfPerson + '\'' +
-                ", salary=" + salary +
                 ", ageOfPerson=" + ageOfPerson +
+                ", salary=" + salary +
+                ", companyName= " + companyName +
                 '}';
     }
 
     @Override
     public String getName() {
         return nameOfPerson;
+    }
+
+    @Override
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    @Override
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    @Override
+    public String getCompanyName() {
+        return null;
     }
 }
