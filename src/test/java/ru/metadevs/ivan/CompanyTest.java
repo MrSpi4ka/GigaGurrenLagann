@@ -41,17 +41,17 @@ class CompanyTest {
         assertThat(metaDevs.getEmployees().length).isEqualTo(0);
     }
 
-//    @Test
-//    public void shouldFoundEmployeeNonExistInFromCompany(){
-//        Company metaDevs = new Company("Metadevs", 1);
-//        Employee ivan = new Manager("Ivan", 21);
-//
-//
-////        assertThatExceptionOfType(EmployeeNotFoundException.class).isThrownBy(() ->{
-////            metaDevs.employeeByName("Ivan");
-////        });
-//
-//    }
+    @Test
+    public void shouldFoundEmployeeNonExistInFromCompany(){
+        Company metaDevs = new Company("Metadevs", 1);
+        Employee ivan = new Manager("Ivan", 21);
+
+
+        assertThatExceptionOfType(EmployeeNotFoundException.class).isThrownBy(() ->
+            metaDevs.employeeByName("Ivan"));
+
+
+    }
 
     @Test
     public void shouldHireExistEmployeeFromCompany(){
