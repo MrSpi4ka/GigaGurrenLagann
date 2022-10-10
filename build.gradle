@@ -1,7 +1,7 @@
 plugins {
     id 'java'
+    id "me.champeau.jmh" version "0.6.6"
 }
-
 group 'ru.metadevs.ivan'
 version '1.0-SNAPSHOT'
 
@@ -17,4 +17,42 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+jmh {
+    //includes = ['some regular expression'] // включите шаблон (регулярное выражение) для выполнения тестов
+    //excludes = ['some regular expression'] // исключить шаблон (регулярное выражение) для выполнения тестов
+    iterations = 1
+    benchmarkMode = ['avgt'] // Режим бенчмаркинга. Доступные режимы: [Пропускная способность/thrpt, среднее время/avgt, время выборки/sample, время одиночной съемки/ss, Все/all]
+    batchSize = 1  // Размер пакета: количество вызовов метода бенчмаркинга за операцию. (некоторые режимы бенчмаркинга могут игнорировать этот параметр)
+    fork = 1 // Сколько раз разветвлять один бенчмарк. Используйте 0, чтобы полностью отключить разветвление
+    //failOnError = false // Должен ли JMH немедленно завершиться сбоем, если какой-либо бенчмарк обнаружил неустранимую ошибку?
+    //forceGC = false // Должен ли JMH принудительно выполнять GC между итерациями?
+    //jvm = 'myjvm' // Настраиваемая JVM для использования при разветвлении.
+    //jvmArgs = ['Настраиваемые аргументы JVM для использования при разветвлении.']
+    //jvmArgsAppend = ['Пользовательские аргументы JVM для использования при разветвлении (добавьте их)']
+    //jvmArgsPrepend =[ 'Пользовательские аргументы JVM для использования при разветвлении (добавьте их)']
+    //humanOutputFile = project.file("${project.buildDir}/results/jmh/human.txt")// удобочитаемый выходной файл
+    //resultsFile = project.file("${project.buildDir}/results/jmh/results.txt") // файл результатов
+    //operationsPerInvocation = 10 // Операции для каждого вызова
+    //benchmarkParameters =  [:] // Параметры бенчмаркинга.
+    //profilers = [] // Используйте профилировщики для сбора дополнительных данных. Поддерживаемые профилировщики: [cl, comp, gc, stack, perf, perfnorm, perfasm, xperf, xperfasm, hs_cl, hs_comp, hs_gc, hs_rt, hs_thr, async]
+    //timeOnIteration = '1s' // Время, затрачиваемое на каждую итерацию измерения.
+    resultFormat = 'TEXT' // CSV, JSON, NONE, SCSV, TEXT
+    //synchronizeIterations = false  // Синхронизировать итерации?
+    threads = 1
+    //threadGroups = [2,3,4] //Переопределите распределение групп потоков для асимметричных тестов.
+    //timeout = '1s' // Время ожидания для итерации бенчмаркинга.
+    timeUnit = 'us'
+    verbosity = 'NORMAL' // SILENT, NORMAL, EXTRA
+    //warmup = '1s' // Время, затрачиваемое на каждую итерацию прогрева.
+    //warmupBatchSize = 10 // Размер пакета прогрева: количество вызовов метода бенчмаркинга за операцию.
+    //warmupForks = 0 // Сколько вилок для прогрева нужно сделать для одного бенчмарка. 0 для отключения разогрева вилок.
+    warmupIterations = 1
+    //warmupMode = 'INDI' // Режим прогрева для прогрева выбранных тестов. Режимы прогрева: [INDI, BULK, BULK_INDI].
+    //warmupBenchmarks = ['.*Warmup'] // Тесты для прогрева для включения в прогон в дополнение к уже выбранным. JMH не будет измерять эти тесты, а будет использовать их только для прогрева.
+    //zip64 = true // Используйте формат ZIP64 для больших архивов
+    jmhVersion = '1.29' // Указывает версию JMH
+    //includeTests = true // Позволяет включать источники тестов в generate JMH jar, т.е. Использовать его, когда тесты зависят от тестовых классов.
+    //duplicateClassesStrategy = DuplicatesStrategy.FAIL // Стратегия, применяемая при обнаружении повторяющихся классов во время создания fat jar (т.е. При выполнении задачи jmhJar)
 }
